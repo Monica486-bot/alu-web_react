@@ -17,7 +17,7 @@ module.exports = {
 			import: './modules/footer/footer.js',
 			dependOn: 'shared',
 		},
-		shared: 'jquery',
+		shared: ['jquery', 'lodash'],
 	},
 
   output: {
