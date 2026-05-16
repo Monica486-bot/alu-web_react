@@ -11,8 +11,6 @@ function App() {
         <img src={logo} className="App-logo" alt="Holberton logo" />
         <h1>School dashboard</h1>
       </header>
-      
-      {/* Notifications Section */}
       <div className="Notifications">
         <p>Here is the list of notifications</p>
         <button
@@ -28,21 +26,16 @@ function App() {
           <li data-priority="urgent" dangerouslySetInnerHTML={{ __html: getLatestNotification() }}></li>
         </ul>
       </div>
-
       <main className="App-body">
-        {/* Login Section */}
         <p>Login to access the full dashboard</p>
         <form>
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="email" />
-
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password" />
-
           <button type="button">OK</button>
         </form>
       </main>
-      
       <footer className="App-footer">
         <p>Copyright {getFullYear()} - {getFooterCopy(false)}</p>
       </footer>
