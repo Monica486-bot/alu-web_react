@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from "./holberton-logo.jpg";
 import "./App.css";
 import { getFullYear, getFooterCopy } from "./utils";
@@ -20,7 +21,7 @@ function App() {
         </form>
       </div>
       <div className="App-footer">
-        Copyright {getFullYear()} - {getFooterCopy()}
+        Copyright {getFullYear()} - {getFooterCopy(false)}
       </div>
     </div>
   );
