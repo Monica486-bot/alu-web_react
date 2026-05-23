@@ -99,7 +99,7 @@ describe("Notification tests", () => {
   it("doesnt re-render when the list passed as prop is the same", () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
 
-    expect(wrapper.instance().shouldComponentUpdate(listNotifications)).toBe(false);
+    expect(wrapper.instance().shouldComponentUpdate({ listNotifications })).toBe(false);
   });
 
   it("re-renders if listNotifications if listNotifications is changed", () => {
@@ -112,7 +112,7 @@ describe("Notification tests", () => {
 
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
 
-    expect(wrapper.instance().shouldComponentUpdate(newListNotifications)).toBe(true);
+    expect(wrapper.instance().shouldComponentUpdate({ listNotifications: newListNotifications })).toBe(true);
   });
 });
 

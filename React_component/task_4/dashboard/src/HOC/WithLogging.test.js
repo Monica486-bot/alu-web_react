@@ -1,31 +1,28 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import WithLogging from "./WithLogging";
-
-const TestComponent = () => <p>Test Component</p>;
+import Login from "../Login/Login";
 
 describe("WithLogging tests", () => {
-  it("should call console.log on mount and dismount", () => {
+  it("logs Component on mount and unmount when wrapping pure HTML", () => {
     const spy = jest.spyOn(console, "log").mockImplementation();
-    const NewComponent = WithLogging(TestComponent);
+    const NewComponent = WithLogging(() => <p />);
     const wrapper = shallow(<NewComponent />);
 
-    expect(spy).toBeCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith("Component Component is mounted");
     wrapper.unmount();
-    expect(spy).toBeCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith("Component Component is going to unmount");
     spy.mockRestore();
   });
 
-  it("should log out the right message on mount and on unmount", () => {
+  it("logs Component Login on mount and unmount when wrapping Login", () => {
     const spy = jest.spyOn(console, "log").mockImplementation();
-    const NewComponent = WithLogging(TestComponent);
+    const NewComponent = WithLogging(Login);
     const wrapper = shallow(<NewComponent />);
 
-    expect(spy).toBeCalledTimes(1);
-    expect(spy).toBeCalledWith("Component TestComponent is mounted");
+    expect(spy).toHaveBeenCalledWith("Component Login is mounted");
     wrapper.unmount();
-    expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toBeCalledWith("Component Test is going to unmount");
+    expect(spy).toHaveBeenCalledWith("Component Login is going to unmount");
     spy.mockRestore();
   });
 });
