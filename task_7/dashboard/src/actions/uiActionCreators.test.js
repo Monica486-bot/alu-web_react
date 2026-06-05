@@ -60,7 +60,6 @@ describe("action creators tests", function () {
     });
 
     it("should verify that if the API returns the right response, the store received two actions LOGIN and LOGING_SUCCESS", () => {
-      // Return the promise
       const store = mockStore({});
       fetchMock.restore();
 
@@ -81,10 +80,9 @@ describe("action creators tests", function () {
     });
 
     it("should verify that if the API query fails, the store received two actions LOGIN and LOGIN_FAILURE", () => {
-      // Return the promise
       const store = mockStore({});
 
-      fetchMock.mock("http://localhost:8564/login-success.json", 500);
+      fetchMock.get("http://localhost:8564/login-success.json", { throws: new Error("API failure") });
 
       const user = {
         email: "test@test.com",
