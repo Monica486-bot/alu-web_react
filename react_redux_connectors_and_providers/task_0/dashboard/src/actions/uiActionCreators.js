@@ -1,19 +1,25 @@
-import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
+import {
+  LOGIN,
+  LOGOUT,
+  DISPLAY_NOTIFICATION_DRAWER,
+  HIDE_NOTIFICATION_DRAWER,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from "./uiActionTypes";
 
-export const selectCourse = (index) => {
-  return {
-    type: SELECT_COURSE,
-    index,
+export const login = (user) => ({ type: LOGIN, user });
+export const logout = () => ({ type: LOGOUT });
+export const displayNotificationDrawer = () => ({ type: DISPLAY_NOTIFICATION_DRAWER });
+export const hideNotificationDrawer = () => ({ type: HIDE_NOTIFICATION_DRAWER });
+export const loginSuccess = () => ({ type: LOGIN_SUCCESS });
+export const loginFailure = () => ({ type: LOGIN_FAILURE });
+
+export const loginRequest = (email, password) => {
+  return (dispatch) => {
+    dispatch(login({ email, password }));
+    return fetch("./login-success.json")
+      .then((res) => res.json())
+      .then(() => dispatch(loginSuccess()))
+      .catch(() => dispatch(loginFailure()));
   };
 };
-
-export const boundSelectCourse = (index) => dispatch(selectCourse(index));
-
-export const unSelectCourse = (index) => {
-  return {
-    type: UNSELECT_COURSE,
-    index,
-  };
-};
-
-export const boundUnSelectCourse = (index) => dispatch(unSelectCourse(index));
